@@ -1,13 +1,14 @@
 
 #include <stdio.h>
 
-int die(){              // here so i won't repeat that same code over and over again. D.R.Y
+int die(){              // here so i won't repeat that same code over and over again. D.R.Y Don't Repeat Yourself.
     printf("\n Invalid argument, closing program.");
     return 0;
 }
 
 int main(){
-    int a, method, check, fragment, b;
+    int a, method, check, b;
+    int fragment = 6;
     char Archive[100] = "Archive_name";
     char command[512] = "zpaqfranz a";
     char *method_str;
@@ -26,11 +27,8 @@ int main(){
         die();
     }
     // archive name check below.
-    printf("\narchive name? (Use _ instead of spaces) ");
+    printf("\narchive name? (Use _ or - instead of spaces) ");
     scanf("%s", Archive);
-    printf("\nDEBUG: Your archives name is: ");     // Debug or rather temp prints
-    printf("%s", Archive);                          // to be removed later... probably
-    // too lazy to remove the debug lines.
 
     // no/checksum check below.
     printf("\n checksum or nochecksum? 1 = nochecksum, 2 = checksum: ");
@@ -44,18 +42,18 @@ int main(){
     }
     printf("Which method do you want? from 1 to 5 only: ");
     scanf("%d", &b);
-    if (b < 1 || b > 5){
+    if (b < 1 || b > 5){    // if its below or above the specified range, die.
         die();
     } else {
-        printf("fragments to use? 6 is default used by franz btw: ");
+        printf("fragments to use? 6 is set by default: ");
         scanf("%d", &fragment);
 
         snprintf(command, sizeof(command),
             "zpaqfranz a %s-m%d_%s_frag%d.zpaq Directory -m%d %s -%s -verbose -hw %s -fragment %d",
             Archive,
-            b,
-            checks,
-            fragment,
+            b,        // method used
+            checks,    // checksum or no checksum
+            fragment,    // fragments
             b,          // method used
             ht_flag,         // only turned on if ssd is.
             method_str, // ssd or hdd
