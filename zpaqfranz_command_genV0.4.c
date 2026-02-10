@@ -10,8 +10,8 @@ int main(){
     int a, method, check, b;
     int fragment = 6;
     char Archive[100] = "Archive_name";
-    char command[512] = "zpaqfranz a";
-    char *method_str;
+    char command[512] = "zpaqfranz a"; // 512 seems a bit much... wait thats bits, so it aint... or is it bytes? still, not much tbh.
+    char *device;
     char *checks;
     char *ht_flag;
 
@@ -19,10 +19,10 @@ int main(){
     scanf("%d", &a);
 
     if (a == 1) {       // ssd and ht set.
-        method_str = "ssd";
+        device = "ssd";
         ht_flag = "-ht";
     } else if (a == 2)  {   // hdd
-        method_str = "hdd";
+        device = "hdd";
     } else {
         die();
     }
@@ -46,7 +46,7 @@ int main(){
         die();
     } else {
         printf("fragments to use? 6 is set by default: ");
-        scanf("%d", &fragment);
+        scanf("%d", &fragment);         // no check needed, there aint no limit, or at least none that i know of.
 
         snprintf(command, sizeof(command),
             "zpaqfranz a %s-m%d_%s_frag%d.zpaq Directory -m%d %s -%s -verbose -hw %s -fragment %d",
@@ -56,7 +56,7 @@ int main(){
             fragment,    // fragments
             b,          // method used
             ht_flag,         // only turned on if ssd is.
-            method_str, // ssd or hdd
+            device, // ssd or hdd
             checks,     // checksum
             fragment
         );
