@@ -31,7 +31,7 @@ int main(){
     scanf("%s", Archive);
 
     // no/checksum check below.
-    printf("\n checksum or nochecksum? 1 = nochecksum, 2 = checksum: ");
+    printf("\nchecksum or nochecksum? 1 = nochecksum, 2 = checksum: ");
     scanf("%d", &check);
     if (check == 1) {
         checks = "-nochecksum";
@@ -48,27 +48,23 @@ int main(){
         printf("fragments to use? 6 is set by default: ");
         scanf("%d", &fragment);         // no check needed, there aint no limit, or at least none that i know of.
 
-        printf("\n buffer size? (in kib) ");
-        scanf("%d", &buffer);
-        if (buffer > 2147483647){    // only reason i put this here is because zpaqfranz has a 32bit integer limit on the buffer.
-            die();
-        } else {
+        printf("\nbuffer size? (in kib) ");
+        scanf("%d", &buffer);     // removed the check bcs even if you go above, it'll only give a command for 2147483647 anyway
 
-            snprintf(command, sizeof(command),
-                "zpaqfranz a %s-m%d_%s_frag%d.zpaq Directory -m%d %s -%s -verbose -hw %s -fragment %d -buffer %d",
-                Archive,
-                b,        // method used
-                checks,    // checksum or no checksum
-                fragment,    // fragments
-                b,          // method used
-                ht_flag,         // only turned on if ssd is.
-                device, // ssd or hdd
-                checks,     // checksum
-                fragment,
-                buffer
-            );
-            printf("\nGenerated command:\n%s\n", command);
-        }
+        snprintf(command, sizeof(command),
+            "zpaqfranz a %s-m%d_%s_frag%d.zpaq Directory -m%d %s -%s -verbose -hw %s -fragment %d -buffer %d",
+            Archive,
+            b,        // method used
+            checks,    // checksum or no checksum
+            fragment,    // fragments
+            b,          // method used
+            ht_flag,         // only turned on if ssd is.
+            device, // ssd or hdd
+            checks,     // checksum
+            fragment,
+            buffer
+        );
+        printf("\nGenerated command:\n%s\n", command);
     }
     return 0;
 }
