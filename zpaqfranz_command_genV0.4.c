@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 int die(){              // here so i won't repeat that same code over and over again. D.R.Y Don't Repeat Yourself.
