@@ -15,7 +15,7 @@ int main(){
     char *checks;
     char *ht_flag;
 
-    printf("\n ssd or hdd? 1 = ssd, 2 = hdd: ");
+    printf("\nssd or hdd? 1 = ssd, 2 = hdd: ");
     scanf("%d", &a);
 
     if (a == 1) {       // ssd and ht set.
