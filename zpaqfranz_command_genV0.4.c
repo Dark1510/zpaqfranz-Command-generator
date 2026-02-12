@@ -38,14 +38,14 @@ int main(){
     } else if (check == 2){
         checks = "";
     } else {
-        die();    // just die.
+        die();
     }
-    printf("Which method do you want? from 1 to 5 only: ");
+    printf("\nWhich method do you want? from 1 to 5 only: ");
     scanf("%d", &b);
     if (b < 1 || b > 5){    // if its below or above the specified range, die.
         die();
     } else {
-        printf("fragments to use? 6 is set by default: ");
+        printf("\nfragments to use? 6 is set by default: ");
         scanf("%d", &fragment);         // no check needed, there aint no limit, or at least none that i know of.
 
         printf("\nbuffer size? (in kib) ");
@@ -54,12 +54,12 @@ int main(){
         snprintf(command, sizeof(command),
             "zpaqfranz a %s-m%d_%s_frag%d.zpaq Directory -m%d %s -%s -verbose -hw %s -fragment %d -buffer %d",
             Archive,
-            b,        // method used
-            checks,    // checksum or no checksum
-            fragment,    // fragments
             b,          // method used
-            ht_flag,         // only turned on if ssd is.
-            device, // ssd or hdd
+            checks,     // checksum or no checksum
+            fragment,   // fragments
+            b,          // method used
+            ht_flag,    // only turned on if ssd is.
+            device,     // ssd or hdd
             checks,     // checksum
             fragment,
             buffer
