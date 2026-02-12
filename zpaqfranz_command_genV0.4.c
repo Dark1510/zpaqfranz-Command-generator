@@ -9,6 +9,7 @@ int main(){
     int a, method, check, b;
     int fragment = 6;
     int buffer = 4;    // 4 is the default that zpaqfranz uses, its in kib btw.
+    char hash2[64] = "-xxhash"
     char Archive[100] = "Archive_name";
     char command[512] = "zpaqfranz a"; // 512 seems a bit much... wait thats bits, so it aint... or is it bytes? still, not much tbh.
     char *device;
@@ -34,11 +35,13 @@ int main(){
     printf("\nchecksum or nochecksum? 1 = nochecksum, 2 = checksum: ");
     scanf("%d", &check);
     if (check == 1) {
-        checks = "-nochecksum";
+        checks = "-nochecksum -hw";
     } else if (check == 2){
 //        checks = "";
         printf("\nwhich algorithm do you want?");
         printf("\ncrc32 xxhash sha1 sha256 xxh3 blake3 sha3 md5 whirlpool highway64 highway128 highway256 xxhashb md5b blake3b sha256b sha3b xxh3b sha1b");    // no logic yet, has to come still
+        printf("\n1     2      3    4      5    6      7    8   9         10        11         12         13      14   15      16      17    18    19"); // i don't give a singular fuck if it looks shit.
+        scanf("%d", &hash)
     } else {
         die();
     }
@@ -48,13 +51,13 @@ int main(){
         die();
     } else {
         printf("\nfragments to use? 6 is set by default: ");
-        scanf("%d", &fragment);         // no check needed, there aint no limit, or at least none that i know of.
+        scanf("%d", &fragment);         // no check needed
 
         printf("\nbuffer size? (in kib) ");
-        scanf("%d", &buffer);     // removed the check bcs even if you go above, it'll only give a command for 2147483647 anyway
+        scanf("%d", &buffer);     // no check because its capped at the 32 bit int limit anyway.
 
         snprintf(command, sizeof(command),
-            "zpaqfranz a %s-m%d_%s_frag%d.zpaq Directory -m%d %s -%s -verbose -hw %s -fragment %d -buffer %d",
+            "zpaqfranz a %s-m%d_%s-frag%d.zpaq Directory -m%d %s -%s -verbose %s %s -fragment %d -buffer %d",
             Archive,
             b,          // method used
             checks,     // checksum or no checksum
@@ -63,6 +66,7 @@ int main(){
             ht_flag,    // only turned on if ssd is.
             device,     // ssd or hdd
             checks,     // checksum
+            hash2,      // not to be confused with hash.
             fragment,
             buffer
         );
