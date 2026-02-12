@@ -36,7 +36,9 @@ int main(){
     if (check == 1) {
         checks = "-nochecksum";
     } else if (check == 2){
-        checks = "";
+//        checks = "";
+        printf("\nwhich algorithm do you want?");
+        printf("\ncrc32 xxhash sha1 sha256 xxh3 blake3 sha3 md5 whirlpool highway64 highway128 highway256 xxhashb md5b blake3b sha256b sha3b xxh3b sha1b");    // no logic yet, has to come still
     } else {
         die();
     }
