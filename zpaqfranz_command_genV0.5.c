@@ -22,14 +22,14 @@ int main(){
 
     printf("\nssd or hdd, 1 = ssd, 2 = hdd: ");
     scanf("%d", &a);
-
     if (a == 1) {       // ssd and ht set.
         device = "-ssd -ht";
     } else if (a == 2)  {   // hdd
         device = "-hdd";
     } else {
-        die();
+        die()
     }
+    
     // archive name check below.
     printf("\narchive name, use - or _ instead of spaces: ");
     scanf("%s", Archive);
@@ -53,13 +53,11 @@ int main(){
     } else {
         die();
     }
-    
     printf("\nWhich method needed, from 1 to 5 only: ");
     scanf("%d", &b);
     if (b < 1 || b > 5){    // if its below or above the specified range, die.
         die();
     } else {
-        
         printf("\nhow many fragments needed, 6 is set by default: ");
         scanf("%d", &fragment);         // no check needed
 
@@ -83,11 +81,3 @@ int main(){
     }
     return 0;
 }
-
-/*
-Todo: idunno whatto writehere
-Add directory options.
-2 hours wasted for something nobody will use other than me.
-worth it, worth the pain and the experience i'll gain.
-C is somehow better than lua for me it seems.
-*/
