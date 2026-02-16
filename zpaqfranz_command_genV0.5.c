@@ -30,11 +30,11 @@ int main(){
         die();
     }
     // archive name check below.
-    printf("\narchive name? (Use _ or - instead of spaces) ");
+    printf("\narchive name, use - or _ instead of spaces: ");
     scanf("%s", Archive);
 
     // no/checksum check below.
-    printf("\nchecksum or nochecksum? 1 = nochecksum, 2 = checksum: ");
+    printf("\nchecksum or nochecksum, 1 = nochecksum, 2 = checksum: ");
     scanf("%d", &check);
     if (check == 1) {
         checks = "-nochecksum";
@@ -56,14 +56,14 @@ int main(){
         die();
     }
     
-    printf("\nWhich method do you want? from 1 to 5 only: ");
+    printf("\nWhich method needed, from 1 to 5 only: ");
     scanf("%d", &b);
     
     if (b < 1 || b > 5){    // if its below or above the specified range, die.
         die();
     } else {
         
-        printf("\nfragments to use? 6 is set by default: ");
+        printf("\n how many fragments needed, 6 is set by default: ");
         scanf("%d", &fragment);         // no check needed
 
         printf("\nbuffer size? (in kib) ");
