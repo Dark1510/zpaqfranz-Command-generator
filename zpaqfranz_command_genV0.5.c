@@ -27,9 +27,9 @@ int main(){
     } else if (a == 2)  {   // hdd
         device = "-hdd";
     } else {
-        die()
+        die();
     }
-    
+
     // archive name check below.
     printf("\narchive name, use - or _ instead of spaces: ");
     scanf("%s", Archive);
@@ -59,25 +59,28 @@ int main(){
         die();
     } else {
         printf("\nhow many fragments needed, 6 is set by default: ");
-        scanf("%d", &fragment);         // no check needed
+        scanf("%d", &fragment);
+        if (fragment < 0) {
+            die();
+        } else {
+            printf("\nbuffer size in kib, 4 is default: ");
+            scanf("%d", &buffer);     // no check because its capped at the 32 bit int limit anyway.
 
-        printf("\nbuffer size in kib, 4 is default: ");
-        scanf("%d", &buffer);     // no check because its capped at the 32 bit int limit anyway.
-
-        snprintf(command, sizeof(command),
-            "zpaqfranz a %s-m%d_%s-frag%d.zpaq Directory -m%d %s -verbose %s -fragment %d -buffer %d %s",
-            Archive,
-            b,          // method used
-            checks,     // checksum or no checksum
-            fragment,   // fragments
-            b,          // method used
-            device,     // ssd or hdd. ht only on if ssd is
-            checks,     // checksum
-            fragment,
-            buffer,
-            hw
-        );
-        printf("\nGenerated command:\n%s\n", command);
+            snprintf(command, sizeof(command),
+                "zpaqfranz a %s-m%d_%s-frag%d.zpaq Directory -m%d %s -verbose %s -fragment %d -buffer %d %s",
+                Archive,
+                b,          // method used
+                checks,     // checksum or no checksum
+                fragment,   // fragments
+                b,          // method used
+                device,     // ssd or hdd. ht only on if ssd is
+                checks,     // checksum
+                fragment,
+                buffer,
+                hw
+            );
+            printf("\nGenerated command:\n%s\n", command);
+        }
     }
     return 0;
 }
